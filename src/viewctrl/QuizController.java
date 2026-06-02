@@ -14,7 +14,7 @@ public class QuizController {
     @FXML private Button btn3;
     @FXML private Label lblFeedback;
 
-    // erstmal nur eine Frage zum testen
+    // erstmal nur eine Frage zum Testen
     private Frage frage = new Frage(
             "Was ist die Hauptstadt von Österreich?",
             Arrays.asList("Berlin", "Wien", "Madrid"),

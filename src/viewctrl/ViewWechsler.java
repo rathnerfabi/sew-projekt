@@ -14,8 +14,7 @@ public class ViewWechsler {
 
     public static void wechsleZu(String fxmlDatei) {
         try {
-            Parent root = FXMLLoader.load(
-                    ViewWechsler.class.getResource("/viewctrl/" + fxmlDatei));
+            Parent root = FXMLLoader.load(ViewWechsler.class.getResource("/viewctrl/" + fxmlDatei));
             stage.setScene(new Scene(root));
         } catch (Exception e) {
             e.printStackTrace();
