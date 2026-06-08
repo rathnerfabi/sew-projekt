@@ -5,12 +5,11 @@ import javafx.stage.Stage;
 import viewctrl.ViewWechsler;
 
 public class Main extends Application {
-
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Quiz");
         ViewWechsler.setStage(primaryStage);
-        ViewWechsler.wechsleZu("quiz.fxml");
+        ViewWechsler.wechsleZu("menue.fxml"); // Menü starten
         primaryStage.show();
     }
 

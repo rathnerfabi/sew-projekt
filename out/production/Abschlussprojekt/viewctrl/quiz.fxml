@@ -8,22 +8,33 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="viewctrl.QuizController"
-      prefWidth="500.0" prefHeight="400.0"
-      spacing="20.0" alignment="TOP_CENTER">
+      prefWidth="500.0" prefHeight="450.0"
+      spacing="15.0" alignment="TOP_CENTER">
 
     <padding>
         <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
     </padding>
 
-    <Label fx:id="lblFrage"
-           text="Hier erscheint die Frage"
-           wrapText="true"
-           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <Label fx:id="lblZaehler" text="Frage 1/8"
+           style="-fx-font-size: 14px;"/>
 
-    <Button fx:id="btn1" text="Antwort 1" onAction="#doAntwort1"/>
-    <Button fx:id="btn2" text="Antwort 2" onAction="#doAntwort2"/>
-    <Button fx:id="btn3" text="Antwort 3" onAction="#doAntwort3"/>
+    <Label fx:id="lblFrage" text="Hier erscheint die Frage"
+           wrapText="true"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <Button fx:id="btn1" text="Antwort 1" onAction="#doAntwort1"
+            prefWidth="350.0" prefHeight="35.0"/>
+    <Button fx:id="btn2" text="Antwort 2" onAction="#doAntwort2"
+            prefWidth="350.0" prefHeight="35.0"/>
+    <Button fx:id="btn3" text="Antwort 3" onAction="#doAntwort3"
+            prefWidth="350.0" prefHeight="35.0"/>
+    <Button fx:id="btn4" text="Antwort 4" onAction="#doAntwort4"
+            prefWidth="350.0" prefHeight="35.0"/>
 
     <Label fx:id="lblFeedback" text=""/>
+
+    <Button fx:id="btnWeiter" text="Weiter" onAction="#doWeiter"
+            disable="true"
+            prefWidth="150.0" prefHeight="35.0"/>
 
 </VBox>

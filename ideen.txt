@@ -1,0 +1,36 @@
+- 4 Antworten pro Frage statt 3 wie bisher
+- Geldstufen wie bei Wer wird Millionär (50€, 100€, 200€, ...)
+- Sicherheitsstufen (z. B. bei 1.000€ und 32.000€, wenn man falsch antwortet fällt man zurück)
+- 50/50 Joker
+- Publikumsjoker (random Prozentwerte, aber richtige Antwort hat am meisten)
+- Telefonjoker / Zusatztipp (ein Hinweis wird eingeblendet)
+- Absicherung vor jeder Antwort (zweimal auf den Button drücken)
+- Aufgeben-Button mit aktuellem Gewinn
+
+Views
+- Startmenü / Hauptmenü
+- Spielername eingeben vor dem Start
+- Quiz-Ansicht
+- Ergebnis-Ansicht am Ende
+- Highscore-Liste
+- Einstellungen (z. B. Anzahl Fragen, Schwierigkeit wählen)
+- Fragen-Editor: im Programm selbst neue Fragen eingeben und speichern
+- Kategorie-Auswahl vor dem Spiel
+
+Spielgefühl
+- zeitliche Begrenzung pro Frage
+- Fragen in zufälliger Reihenfolge gestellt
+- Antworten zufällig durchgemischt
+- Farb-Animationen auf den Button bei richtig/falsch
+
+Collections:
+- Highscore-Liste sortieren
+- Spielerliste
+- keine doppelten Fragen
+
+Streams:
+- Fragen aus einer Textdatei laden
+- Spielerprofile abspeichern
+
+Rekursion:
+- Geldstufen-Berechnung (doppelt so viel wie vorher)

@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 public class ViewWechsler {
     private static Stage stage;
 
+    public static int letztePunkte;
+    public static int letzteGesamt;
+
     public static void setStage(Stage primaryStage) {
         stage = primaryStage;
     }
