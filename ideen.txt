@@ -1,6 +1,5 @@
 - 4 Antworten pro Frage statt 3 wie bisher
 - Geldstufen wie bei Wer wird Millionär (50€, 100€, 200€, ...)
-- Sicherheitsstufen (z. B. bei 1.000€ und 32.000€, wenn man falsch antwortet fällt man zurück)
 - 50/50 Joker
 - Publikumsjoker (random Prozentwerte, aber richtige Antwort hat am meisten)
 - Telefonjoker / Zusatztipp (ein Hinweis wird eingeblendet)

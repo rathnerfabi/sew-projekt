@@ -8,19 +8,20 @@ public class Frage {
     private String text;
     private List<String> antworten;
     private String richtigeAntwort;
+    private Kategorie kategorie;
 
-    public Frage(String text, List<String> antworten, int richtigerIndex) {
+    public Frage(String text, List<String> antworten, int richtigerIndex, Kategorie kategorie) {
         this.text = text;
-        this.antworten = new ArrayList<>(antworten); // eigene Liste, damit wir mischen duerfen
+        this.antworten = new ArrayList<>(antworten);
         this.richtigeAntwort = antworten.get(richtigerIndex);
+        this.kategorie = kategorie;
     }
 
-    // Antworten durchmischen
+    // - Antworten durchmischen
     public void mischeAntworten() {
         Collections.shuffle(antworten);
     }
 
-    // Prüfe, ob richtige Antwort gewählt
     public boolean istRichtig(int gewaehlterIndex) {
         return antworten.get(gewaehlterIndex).equals(richtigeAntwort);
     }
@@ -35,5 +36,9 @@ public class Frage {
 
     public String getRichtigeAntwort() {
         return richtigeAntwort;
+    }
+
+    public Kategorie getKategorie() {
+        return kategorie;
     }
 }

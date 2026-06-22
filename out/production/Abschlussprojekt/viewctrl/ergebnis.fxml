@@ -8,18 +8,25 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="viewctrl.ErgebnisController"
-      prefWidth="500.0" prefHeight="400.0"
-      spacing="30.0" alignment="CENTER">
+      prefWidth="700.0" prefHeight="500.0"
+      spacing="20.0" alignment="CENTER">
 
     <padding>
         <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
     </padding>
 
-    <Label text="Quiz beendet!"
-           style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <Label fx:id="lblKategorie" text=""
+           style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
 
-    <Label fx:id="lblErgebnis" text=""
-           style="-fx-font-size: 18px;"/>
+    <Label fx:id="lblTitel" text="Spiel zu Ende"
+           style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+
+    <Label fx:id="lblGewinn" text=""
+           style="-fx-font-size: 22px;"/>
+
+    <Label fx:id="lblNachricht" text=""
+           wrapText="true"
+           style="-fx-font-size: 14px;"/>
 
     <Button text="Zurück zum Menü" onAction="#doZurueck"
             prefWidth="220.0" prefHeight="40.0"/>

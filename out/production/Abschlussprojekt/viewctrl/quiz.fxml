@@ -2,39 +2,66 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx"
+<HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="viewctrl.QuizController"
-      prefWidth="500.0" prefHeight="450.0"
-      spacing="15.0" alignment="TOP_CENTER">
+      prefWidth="720.0" prefHeight="540.0"
+      spacing="20.0" alignment="TOP_CENTER">
 
     <padding>
-        <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
     </padding>
 
-    <Label fx:id="lblZaehler" text="Frage 1/8"
-           style="-fx-font-size: 14px;"/>
+    <!-- Linker Bereich: Frage und Antworten -->
+    <VBox spacing="10.0" alignment="TOP_CENTER" prefWidth="470.0">
 
-    <Label fx:id="lblFrage" text="Hier erscheint die Frage"
-           wrapText="true"
-           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <Label fx:id="lblKategorie" text="Kategorie: Gemischt"
+               style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
 
-    <Button fx:id="btn1" text="Antwort 1" onAction="#doAntwort1"
-            prefWidth="350.0" prefHeight="35.0"/>
-    <Button fx:id="btn2" text="Antwort 2" onAction="#doAntwort2"
-            prefWidth="350.0" prefHeight="35.0"/>
-    <Button fx:id="btn3" text="Antwort 3" onAction="#doAntwort3"
-            prefWidth="350.0" prefHeight="35.0"/>
-    <Button fx:id="btn4" text="Antwort 4" onAction="#doAntwort4"
-            prefWidth="350.0" prefHeight="35.0"/>
+        <Label fx:id="lblZaehler" text="Frage 1/15"
+               style="-fx-font-size: 14px;"/>
 
-    <Label fx:id="lblFeedback" text=""/>
+        <Label fx:id="lblFrage" text="Hier erscheint die Frage"
+               wrapText="true"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
 
-    <Button fx:id="btnWeiter" text="Weiter" onAction="#doWeiter"
-            disable="true"
-            prefWidth="150.0" prefHeight="35.0"/>
+        <Region prefHeight="8"/>
 
-</VBox>
+        <Button fx:id="btn1" text="Antwort 1" onAction="#doAntwort1"
+                prefWidth="420.0" prefHeight="38.0"/>
+        <Button fx:id="btn2" text="Antwort 2" onAction="#doAntwort2"
+                prefWidth="420.0" prefHeight="38.0"/>
+        <Button fx:id="btn3" text="Antwort 3" onAction="#doAntwort3"
+                prefWidth="420.0" prefHeight="38.0"/>
+        <Button fx:id="btn4" text="Antwort 4" onAction="#doAntwort4"
+                prefWidth="420.0" prefHeight="38.0"/>
+
+        <Label fx:id="lblFeedback" text=""
+               wrapText="true"
+               style="-fx-font-size: 14px;"/>
+
+        <Region prefHeight="8"/>
+
+        <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="btnAufgeben" text="Aufgeben" onAction="#doAufgeben"
+                    prefWidth="150.0" prefHeight="35.0"/>
+            <Button fx:id="btnWeiter" text="Weiter" onAction="#doWeiter"
+                    disable="true"
+                    prefWidth="150.0" prefHeight="35.0"/>
+        </HBox>
+
+    </VBox>
+
+    <!-- Rechter Bereich: Geldstufen-Sidebar -->
+    <VBox fx:id="boxGeldstufen" spacing="3.0" alignment="TOP_LEFT" prefWidth="180.0">
+        <padding>
+            <Insets top="20.0" right="10.0" bottom="10.0" left="10.0"/>
+        </padding>
+    </VBox>
+
+</HBox>

@@ -6,60 +6,111 @@ import java.util.Collections;
 import java.util.List;
 
 public class Quiz {
-    private List<Frage> fragen;
+    private List<Frage> pool;
+    private List<Frage> aktuelleFragen;
     private int aktuellerIndex;
-    private int punkte;
+    private int gewinn;
+    private Spielstatus status;
+    private Kategorie gewaehlteKategorie;
 
-    public Quiz() {
-        fragen = new ArrayList<>();
-        aktuellerIndex = 0;
-        punkte = 0;
+    public Quiz(Kategorie kategorie) {
+        this.gewaehlteKategorie = kategorie;
+        pool = new ArrayList<>();
         fragenAnlegen();
-        Collections.shuffle(fragen); // Reihenfolge zufällig
-        for (Frage f : fragen) {
-            f.mischeAntworten();     // Antworten innerhalb der Frage mischen
+
+        // Pool nach Kategorie filtern
+        aktuelleFragen = new ArrayList<>();
+        if (kategorie == Kategorie.GEMISCHT) {
+            aktuelleFragen.addAll(pool);
+        } else {
+            for (Frage f : pool) {
+                if (f.getKategorie() == kategorie) {
+                    aktuelleFragen.add(f);
+                }
+            }
         }
+
+        // 15 Fragen zufällig ziehen
+        Collections.shuffle(aktuelleFragen);
+        int anzahl = Geldstufen.getAnzahl();
+        if (aktuelleFragen.size() > anzahl) {
+            aktuelleFragen = new ArrayList<>(aktuelleFragen.subList(0, anzahl));
+        }
+
+        for (Frage f : aktuelleFragen) {
+            f.mischeAntworten();
+        }
+
+        aktuellerIndex = 0;
+        gewinn = 0;
+        status = Spielstatus.LAUFT;
     }
 
-    // Beispielfragen
     private void fragenAnlegen() {
-        fragen.add(new Frage("Was ist die Hauptstadt von Österreich?",
-                Arrays.asList("Wien", "Berlin", "Madrid", "Paris"), 0));
-        fragen.add(new Frage("Wie viel ist 7 * 8?",
-                Arrays.asList("54", "56", "58", "64"), 1));
-        fragen.add(new Frage("Welche davon ist eine Programmiersprache?",
-                Arrays.asList("HTML", "CSS", "Java", "HTTP"), 2));
-        fragen.add(new Frage("Wie viele Bits hat ein Byte?",
-                Arrays.asList("4", "8", "16", "32"), 1));
-        fragen.add(new Frage("Welches Land hat die meisten Einwohner?",
-                Arrays.asList("USA", "Indien", "China", "Russland"), 1));
-        fragen.add(new Frage("Welches Element hat das Zeichen Au?",
-                Arrays.asList("Silber", "Gold", "Kupfer", "Aluminium"), 1));
-        fragen.add(new Frage("In welchem Jahr endete der 2. Weltkrieg?",
-                Arrays.asList("1943", "1944", "1945", "1946"), 2));
-        fragen.add(new Frage("Wer schrieb Faust?",
-                Arrays.asList("Schiller", "Goethe", "Kafka", "Brecht"), 1));
+        // === GEOGRAFIE ===
+        pool.add(new Frage("Was ist die Hauptstadt von Österreich?",
+                Arrays.asList("Wien", "Berlin", "Madrid", "Paris"), 0, Kategorie.GEOGRAFIE));
+        pool.add(new Frage("Welcher ist der höchste Berg der Welt?",
+                Arrays.asList("K2", "Mont Blanc", "Mount Everest", "Kilimandscharo"), 2, Kategorie.GEOGRAFIE));
+
+        // === GESCHICHTE ===
+        pool.add(new Frage("In welchem Jahr endete der 2. Weltkrieg?",
+                Arrays.asList("1943", "1944", "1945", "1946"), 2, Kategorie.GESCHICHTE));
+        pool.add(new Frage("Wann fiel die Berliner Mauer?",
+                Arrays.asList("1987", "1989", "1990", "1991"), 1, Kategorie.GESCHICHTE));
+
+        // === NATURWISSENSCHAFT ===
+        pool.add(new Frage("Wie viel ist 7 * 8?",
+                Arrays.asList("54", "56", "58", "64"), 1, Kategorie.NATURWISSENSCHAFT));
+        pool.add(new Frage("Welches Element hat das Zeichen Au?",
+                Arrays.asList("Silber", "Gold", "Kupfer", "Aluminium"), 1, Kategorie.NATURWISSENSCHAFT));
+
+        // === KULTUR ===
+        pool.add(new Frage("Wer schrieb Faust?",
+                Arrays.asList("Schiller", "Goethe", "Kafka", "Brecht"), 1, Kategorie.KULTUR));
+        pool.add(new Frage("Wer malte die Mona Lisa?",
+                Arrays.asList("Michelangelo", "Leonardo da Vinci", "Raffael", "Van Gogh"), 1, Kategorie.KULTUR));
+
+        // === ALLGEMEINWISSEN ===
+        pool.add(new Frage("Wie viele Bits hat ein Byte?",
+                Arrays.asList("4", "8", "16", "32"), 1, Kategorie.ALLGEMEIN));
+        pool.add(new Frage("Wie viele Spieler hat eine Fußballmannschaft am Feld?",
+                Arrays.asList("9", "10", "11", "12"), 2, Kategorie.ALLGEMEIN));
     }
 
     public Frage getAktuelleFrage() {
-        return fragen.get(aktuellerIndex);
+        return aktuelleFragen.get(aktuellerIndex);
     }
 
-    // Antwort prüfen, bei richtig Punkte erhöhen
     public boolean beantworten(int gewaehlterIndex) {
         boolean richtig = getAktuelleFrage().istRichtig(gewaehlterIndex);
         if (richtig) {
-            punkte++;
+            gewinn = Geldstufen.getBetrag(aktuellerIndex);
+            if (aktuellerIndex == aktuelleFragen.size() - 1) {
+                status = Spielstatus.GEWONNEN;
+            }
+        } else {
+            gewinn = 0;
+            status = Spielstatus.FALSCH;
         }
         return richtig;
     }
 
-    public boolean hatNaechsteFrage() {
-        return aktuellerIndex < fragen.size() - 1;
+    public void aufgeben() {
+        gewinn = Geldstufen.gewinnBeiAufgeben(aktuellerIndex);
+        status = Spielstatus.AUFGEGEBEN;
     }
 
     public void naechsteFrage() {
         aktuellerIndex++;
+    }
+
+    public boolean istVorbei() {
+        return status != Spielstatus.LAUFT;
+    }
+
+    public int getGewinn() {
+        return gewinn;
     }
 
     public int getFrageNummer() {
@@ -67,10 +118,18 @@ public class Quiz {
     }
 
     public int getAnzahlFragen() {
-        return fragen.size();
+        return aktuelleFragen.size();
     }
 
-    public int getPunkte() {
-        return punkte;
+    public int getAktuellerIndex() {
+        return aktuellerIndex;
+    }
+
+    public Spielstatus getStatus() {
+        return status;
+    }
+
+    public Kategorie getGewaehlteKategorie() {
+        return gewaehlteKategorie;
     }
 }
