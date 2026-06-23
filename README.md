@@ -10,7 +10,7 @@ Das Spiel hat mehrere Fragen mit je 4 Antworten. Reihenfolge der Fragen und Antw
 
 ## Geplant
 
-- Geldstufen und Sicherheitsstufen wie bei Wer wird Millionär
+- Geldstufen wie bei Wer wird Millionär
 - Aufgeben-Button, Highscore-Liste
 - Fragen aus Datei laden, Highscores und Spielerprofile speichern
 - Fragen-Editor im Programm
